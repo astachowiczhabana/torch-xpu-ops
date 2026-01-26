@@ -571,4 +571,31 @@ void lu_factor_mkl(
   pivots.copy_(pivots_);
 }
 
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SVD ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+void svd_mkl(
+    const Tensor& A,
+    const bool full_matrices,
+    const bool compute_uv,
+    const std::optional<std::string_view>& driver,
+    const Tensor& U,
+    const Tensor& S,
+    const Tensor& Vh,
+    const Tensor& info) {
+  // TODO: Implement using oneapi::mkl::lapack::gesvd
+  TORCH_CHECK(false, "svd_mkl: oneMKL SVD implementation not yet available. Use CPU fallback by building without USE_ONEMKL_XPU.");
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EIGH ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+void linalg_eigh_mkl(
+    const Tensor& eigenvalues,
+    const Tensor& eigenvectors,
+    const Tensor& infos,
+    bool upper,
+    bool compute_eigenvectors) {
+  // TODO: Implement using oneapi::mkl::lapack::syevd / heevd
+  TORCH_CHECK(false, "linalg_eigh_mkl: oneMKL EIGH implementation not yet available. Use CPU fallback by building without USE_ONEMKL_XPU.");
+}
+
 } // namespace at::native::xpu
