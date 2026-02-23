@@ -18,6 +18,9 @@ skip_dict = {
         "_dot_",
         "_flash_attention_",
         "_efficient_attention_",
+        # FakeTensor mismatch in outputs_alias_inputs for aten.view.default
+        # Known upstream issue: https://github.com/pytorch/pytorch/issues/159150
+        "test_fake_crossref_backward_amp_nn_functional_bilinear_xpu_float32",
     ),
     "test_binary_ufuncs_xpu.py": (
         "test_fmod_remainder_by_zero_integral_xpu_int64",  # zero division is an undefined behavior: different handles on different backends
