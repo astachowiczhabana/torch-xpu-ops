@@ -122,6 +122,8 @@ from torch.testing._internal.common_utils import (  # type: ignore[attr-defined]
 )
 from torch.testing._internal.two_tensor import TwoTensor
 
+print("[torch-xpu-ops test suite]")
+
 onlyXPU = onlyXPU
 onlyNativeDeviceTypes = onlyXPU
 torch.testing._internal.common_utils.NATIVE_DEVICES = (
