@@ -288,6 +288,13 @@ is_cuda_sm86 = torch.cuda.is_available() and torch.cuda.get_device_capability(0)
 class TestTorchDeviceType(TestCase):
     exact_dtype = True
 
+    def tearDown(self):
+        super().tearDown()
+        if torch.xpu.is_available():
+            torch.xpu.synchronize()
+            torch.xpu.empty_cache()
+        gc.collect()
+
     # TODO: move all tensor creation to common ops
     def _rand_shape(self, dim, min_size, max_size):
         shape = []
@@ -7993,6 +8000,13 @@ def disable_gc():
 
 class TestTorch(TestCase):
     exact_dtype = True
+
+    def tearDown(self):
+        super().tearDown()
+        if torch.xpu.is_available():
+            torch.xpu.synchronize()
+            torch.xpu.empty_cache()
+        gc.collect()
 
     def test_dir(self):
         dir(torch)
